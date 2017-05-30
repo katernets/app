@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<% if funcionario_signed_in? %>
+
+            <h1>Produtos</h1>
+            <div><%= link_to 'New Produto', new_produto_path %></div>
+            
+            <% @produtos.each do |produto| %>
+            
+                  <div class="col-sm-4 col-lg-4 col-md-4">
+                      <div class="thumbnail">
+                              <img src="<%= produto.caminho %>" alt="">
+                              <div class="caption">
+                                  <h4><a href="#"><%= produto.descricao %></a></h4>
+                                  <button type="button" class="btn btn-primary btn-lg btn-block"><%= produto.preco %></button>
+                              </div>
+                              <div style="padding-left:40px; padding-bottom:15px;">
+                                 
+                                  <a class="btn btn-success btn-sm" href="produtos/<%= produto.id %>">Ver</a>
+                                  <a class="btn btn-warning btn-sm" href="<%= edit_produto_path(produto) %>">Editar</a>
+                                  <%= link_to 'Excluir', produto, method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: "btn btn-danger btn-sm" %>
+                                  
+                              </div>
+                      </div>
+                  </div>
+            <% end %>
+        
+
+<% else %>
+      
+            <% @produtos.each do |produto| %>
+      
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="<%= produto.caminho %>" alt="">
+                    <div class="caption">
+                        <h4><a href="#"><%= produto.descricao %></a></h4>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"><%= produto.preco %></button>
+                    </div>
+                    
+                      <div style="padding-left:80px; padding-bottom:15px;">
+                         
+                          <a class="btn btn-success btn-sm" href="">Comprar</a>
+
+                      </div>
+        
+                </div>
+            </div>
+      
+            <% end %>
+
+<% end %>

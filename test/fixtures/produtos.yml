@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descricao: 
+  preco: 9.99
+  cminho: 
+  tipo: 
+
+two:
+  descricao: 
+  preco: 9.99
+  cminho: 
+  tipo: 
