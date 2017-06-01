@@ -1,0 +1,26 @@
+<h1>Listagem de cliente</h1>
+
+<% @cliente = Cliente.all %>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>E-mail</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+<% @cliente.each do |user| %>
+      <tr>
+        <td></td>
+        <td><%= user.email %></td>
+        <td>
+          <button type="button" class="btn btn-default btn-xs">Editar</button>
+          <button type="button" class="btn btn-default btn-xs">Excluir</button>
+        </td>
+      </tr>
+<% end %>
+    </tbody>
+  </table>
+  

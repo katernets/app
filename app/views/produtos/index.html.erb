@@ -1,10 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <% if funcionario_signed_in? %>
+            <div>
+                <%= link_to 'New Produto', new_produto_path, class: "btn btn btn-default btn-sm"%>
+                <a class="btn btn btn-default btn-sm" href="cliente/index">Listagem Clientes</a>
+                <a class="btn btn btn-default btn-sm" href="funcionario/index">Listagem Funcionários</a>
+            </div>
 
-            <h1>Produtos</h1>
-            <div><%= link_to 'New Produto', new_produto_path %></div>
-            
+            <h1>Listage de Produtos</h1>
+
             <% @produtos.each do |produto| %>
             
                   <div class="col-sm-4 col-lg-4 col-md-4">
@@ -12,21 +16,20 @@
                               <img src="<%= produto.caminho %>" alt="">
                               <div class="caption">
                                   <h4><a href="#"><%= produto.descricao %></a></h4>
-                                  <button type="button" class="btn btn-primary btn-lg btn-block"><%= produto.preco %></button>
+                                  <button type="button" class="btn btn-primary btn-lg btn-block"><span>R$  </span><%= produto.preco %></button>
                               </div>
                               <div style="padding-left:40px; padding-bottom:15px;">
                                  
-                                  <a class="btn btn-success btn-sm" href="produtos/<%= produto.id %>">Ver</a>
-                                  <a class="btn btn-warning btn-sm" href="<%= edit_produto_path(produto) %>">Editar</a>
-                                  <%= link_to 'Excluir', produto, method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: "btn btn-danger btn-sm" %>
+                                  <a class="btn btn-default btn-sm" href="produtos/<%= produto.id %>">Ver</a>
+                                  <a class="btn btn-default btn-sm" href="<%= edit_produto_path(produto) %>">Editar</a>
+                                  <%= link_to 'Excluir', produto, method: :delete, data: { confirm: 'Você tem certeza disso?' }, class: "btn btn-default btn-sm" %>
                                   
                               </div>
                       </div>
                   </div>
             <% end %>
-        
 
-<% else %>
+<% elsif cliente_signed_in? %>
       
             <% @produtos.each do |produto| %>
       
@@ -35,12 +38,35 @@
                     <img src="<%= produto.caminho %>" alt="">
                     <div class="caption">
                         <h4><a href="#"><%= produto.descricao %></a></h4>
-                        <button type="button" class="btn btn-primary btn-lg btn-block"><%= produto.preco %></button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"><span>R$  </span><%= produto.preco %></button>
                     </div>
                     
                       <div style="padding-left:80px; padding-bottom:15px;">
                          
                           <a class="btn btn-success btn-sm" href="">Comprar</a>
+
+                      </div>
+        
+                </div>
+            </div>
+      
+            <% end %>
+            
+<% else %>
+
+            <% @produtos.each do |produto| %>
+      
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="<%= produto.caminho %>" alt="">
+                    <div class="caption">
+                        <h4><a href="#"><%= produto.descricao %></a></h4></button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"><span>R$  </span><%= produto.preco %></button>
+                    </div>
+                    
+                      <div style="padding-left:80px; padding-bottom:15px;">
+                         
+                          <!--<a class="btn btn-success btn-sm" href="">Comprar</a>-->
 
                       </div>
         

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ECommerceApp2</title>
+    <title>ECommerce_Carlin</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    
     
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/shop-homepage.css" rel="stylesheet">
@@ -30,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <%= link_to(image_tag("Logo.png", :alt => "Logo", :title => "Logo"), "/") %>
+                <%= link_to(image_tag("Logo.png", :alt => "Logo", :title => "Logo"),"/") %>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -47,11 +49,30 @@
 
             
                 <div class="botao-login">
-
+                    
+                <% if funcionario_signed_in? %>
+                 
                  <%= link_to 'Logout', destroy_funcionario_session_path, method: :delete, class: "btn btn-default" %>
-                 <%= link_to 'Login', new_funcionario_session_path, class: "btn btn-default"%>
-                 <%= link_to 'Cadastrar-se', new_funcionario_registration_path, class: "btn btn-default" %>
-                 <%= link_to 'Cool site', href="#", class: "btn btn-default" %>
+                 <%= link_to 'Login', new_funcionario_session_path, class: "btn btn-default disabled"%>
+                 <%= link_to 'Cadastrar Novo', new_funcionario_registration_path, class: "btn btn-default disabled " %>
+                 <%= link_to 'Área Privativa', new_funcionario_registration_path, class: "btn btn-default disabled "%>
+                 
+                 <% elsif cliente_signed_in?  %>
+                 
+                 <%= link_to 'Logout', destroy_cliente_session_path, method: :delete, class: "btn btn-default" %>
+                 <%= link_to 'Login', new_cliente_session_path, class: "btn btn-default disabled"%>
+                 <%= link_to 'Cadastrar-se', new_cliente_registration_path, class: "btn btn-default disabled " %>
+                 <%= link_to 'Área Privativa', new_funcionario_session_path, class: "btn btn-default disabled"%>
+                 
+                 <% else %>
+                 
+                 <%= link_to 'Logout', destroy_cliente_session_path, method: :delete, class: "btn btn-default disabled" %>
+                 <%= link_to 'Login', new_cliente_session_path, class: "btn btn-default "%>
+                 <%= link_to 'Cadastrar-se', new_cliente_registration_path, class: "btn btn-default " %>
+                 <%= link_to 'Área Privativa', new_funcionario_session_path, class: "btn btn-default "%>
+                 
+                 <% end %>
+                 
                 </div>
                 
             </div>
@@ -64,20 +85,21 @@
     <div class="container">
 
         <div class="row">
-
+            
             <div class="col-md-3">
+                <p class="lead">Carlim store melhores produtos</p>
                 <div class="list-group">
                     <a href="#" class="list-group-item">Notebooks</a>
                     <a href="#" class="list-group-item">Celulares</a>
                     <a href="#" class="list-group-item">Cameras</a>
                 </div>
             </div>
-
+            
             <div class="col-md-9">
 
                 <div class="row carousel-holder">
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" margin-left:"500px">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
